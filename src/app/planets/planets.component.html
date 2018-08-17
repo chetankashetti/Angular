@@ -1,0 +1,55 @@
+<p>
+  planets works!
+</p>
+<div class="container">
+  <div class="form-row">
+    <div class="form-group col-md-2">
+      <select [(ngModel)]="_selectedObj" #planetSelectedFirst="ngModel" class="form-group" (change)="RemoveSelected(planetSelectedFirst.value, 1)" class="form-control">
+        <option>Choose one</option>
+        <option *ngFor="let planet of planets"  [ngValue]="planet">{{planet.name}}</option>
+      </select>
+      <div class="form-group text-left" *ngIf="planetSelectedFirst.dirty" >
+          <div class="form-check" *ngFor="let vehicle of vehicles; index as id">
+              <input class=" form-check-input"  [value]="vehicle" id="{{id}}" (change)="ReduceVehicle(vehicle, 1, id)" type="radio" [(ngModel)]="selectedRadio" name="firstVehicleGroup"  #firstVehicleGroup="ngModel"  >
+              <label class="form-check-label" for="{{id}}">{{vehicle.name}} ({{vehicle.total_no}})</label>
+          </div>
+      </div>
+    </div>
+    <div class="form-group col-md-2">
+      <select [(ngModel)]="_selectedObj2" #planetSelectedSecond="ngModel" class="form-group" (change)="RemoveSelected(planetSelectedSecond.value, 2)" class="form-control">
+        <option>Choose one</option>
+        <option *ngFor="let planet of planetsSec"  [ngValue]="planet">{{planet.name}}</option>
+      </select>
+      <div class="form-group text-left" *ngIf="planetSelectedSecond.dirty" >
+          <div class="form-check" *ngFor="let vehicle of VehiclesSecond; index as id">
+              <input class="form-check-input"  [value]="vehicle" id="{{id}}1" [(ngModel)]="selectedRadio1" (change)="ReduceVehicle(vehicle, 2, id)" type="radio" name="secondVehicleGroup"  #secondVehicleGroup="ngModel"  >
+              <label class="form-check-label" for="{{id}}1">{{vehicle.name}} ({{vehicle.total_no}})</label>
+          </div>
+      </div>
+    </div>
+    <div class="form-group col-md-2">
+      <select [(ngModel)]="_selectedObj3" #planetSelectedThird="ngModel" class="form-group" (change)="RemoveSelected(planetSelectedThird.value, 3)" class="form-control">
+        <option>Choose one</option>
+        <option *ngFor="let planet of planetsThr"  [ngValue]="planet">{{planet.name}}</option>
+      </select>
+      <div class="form-group text-left" *ngIf="planetSelectedThird.dirty" >
+          <div class="form-check" *ngFor="let vehicle of VehiclesThird; index as id">
+              <input class="form-check-input" [disabled]="vehicle.total_no === 0" [value]="vehicle" id="{{id}}2" (change)="ReduceVehicle(vehicle, 3, id)"  [(ngModel)]="selectedRadio2" type="radio" name="thirdVehicleGroup"  #thirdVehicleGroup="ngModel"  >
+              <label class="form-check-label" for="{{id}}2">{{vehicle.name}} ({{vehicle.total_no}})</label>
+          </div>
+      </div>
+    </div>
+    <div class="form-group col-md-2">
+      <select [(ngModel)]="_selectedObj4" #planetSelectedLast="ngModel" class="form-group" (change)="RemoveSelected(planetSelectedLast.value, 4)" class="form-control">
+          <option>Choose one</option>
+          <option *ngFor="let planet of planetsLast"  [ngValue]="planet">{{planet.name}}</option>
+        </select>
+        <div class="form-group text-left" *ngIf="planetSelectedLast.dirty" >
+            <div class="form-check" *ngFor="let vehicle of VehiclesLast; index as id">
+                <input class="form-check-input" [disabled]="vehicle.total_no === 0" [value]="vehicle" id="{{id}}3"  [(ngModel)]="selectedRadio3" (change)="ReduceVehicle(vehicle, 4, id)" type="radio" name="lastVehicleGroup"  #lastVehicleGroup="ngModel"  >
+                <label class="form-check-label" for="{{id}}3">{{vehicle.name}} ({{vehicle.total_no}})</label>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
